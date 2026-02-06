@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,56 +37,62 @@ fun BusinessCard() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFDDEFE0)), // light green background
-        verticalArrangement = Arrangement.SpaceBetween,
+            .background(Color(0xFFDDEFE0)),
+        verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
-        Spacer(modifier = Modifier.height(40.dp))
-
-        // ===== CENTER PROFILE SECTION =====
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.android_logo),
-                contentDescription = "Android Logo",
-                modifier = Modifier.size(120.dp)
-                    .background(Color(color = 0xFF002e40))
-
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "Dhairya Rana",
-                fontSize = 36.sp,
-                fontWeight = FontWeight.Light,
-                color = Color.Black
-            )
-
-            Text(
-                text = "Android Developer Extraordinaire",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF1B5E20)
-            )
-        }
-
-        // ===== CONTACT INFO (BOTTOM) =====
-        Column(
-            modifier = Modifier
-                .padding(bottom = 32.dp)
-        ) {
-            ContactItem(Icons.Default.Phone, "+1 368 886 3567")
-            ContactItem(Icons.Default.Share, "@theyrya")
-            ContactItem(Icons.Default.Email, "dhairya@gmail.com")
-        }
+        Spacer(modifier = Modifier.height(60.dp))
+        NameAndTitle()
+        ContactInformation()
     }
 }
 
 @Composable
-fun ContactItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
+fun NameAndTitle() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.android_logo),
+            contentDescription = "Android Logo",
+            modifier = Modifier
+                .size(120.dp)
+                .background(Color(color = 0xFF002e40))
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Dhairya Rana",
+            fontSize = 36.sp,
+            fontWeight = FontWeight.Light,
+            color = Color.Black
+        )
+
+        Text(
+            text = "Android Developer Extraordinaire",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF1B5E20)
+        )
+    }
+}
+
+@Composable
+fun ContactInformation() {
+    Column(
+        modifier = Modifier
+            .padding(bottom = 32.dp)
+    ) {
+        ContactItem(icon = Icons.Default.Phone, text = "+1 368 886 3567")
+        ContactItem(icon = Icons.Default.Share, text = "@theyrya")
+        ContactItem(icon = Icons.Default.Email, text = "dhairya@gmail.com")
+    }
+}
+
+
+@Composable
+fun ContactItem(icon: ImageVector, text: String) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(vertical = 8.dp)
